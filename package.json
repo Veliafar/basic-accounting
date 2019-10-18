@@ -12,6 +12,16 @@
     "dev-win": "start npm run server && npm run start",
     "dev-unix": "npm run server & npm run start"
   },
+  "author": {
+    "name": "Kiselev D."
+  },
+  "maintainers": [
+    {
+      "name": "Kiselev D."
+    }
+  ],
+  "license": "MIT",
+  "description": "basic accounting",
   "private": true,
   "dependencies": {
     "@angular/animations": "~8.2.4",
