@@ -10,7 +10,8 @@
     "e2e": "ng e2e",
     "server": "json-server --watch db.json --port 3000",
     "dev-win": "start npm run server && npm run start",
-    "dev-unix": "npm run server & npm run start"
+    "dev-unix": "npm run server & npm run start",
+    "release": "npx np --contents=dist --yolo"
   },
   "author": {
     "name": "Kiselev D."
