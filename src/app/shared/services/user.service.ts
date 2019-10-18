@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { User } from './models/user.model';
@@ -14,3 +14,4 @@ export class UserService {
             .map( (user: User[]) => user[0] ? user[0] : undefined);
     }
 }
+
