@@ -5,27 +5,6 @@
       "email": "denis.seo@nxt.ru",
       "password": "12345678",
       "name": "Администратор"
-    },
-    {
-      "email": "Newbie@gmail.com",
-      "password": "12345678",
-      "name": "Newbie",
-      "agree": true,
-      "id": 2
-    },
-    {
-      "email": "Laisha86@hotmail.com",
-      "password": "12345678",
-      "name": "Laisha",
-      "agree": true,
-      "id": 3
-    },
-    {
-      "email": "Newbie2@gmail.com",
-      "password": "12345678",
-      "name": "Newbie2",
-      "agree": true,
-      "id": 4
     }
   ],
   "bill": {

@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
 
     this.route.queryParams
       .subscribe((params: Params) => {
-        if (params[`nowCanLogin`])  {
+        if (params[`nowCanLogin`]) {
           this.showMessage('Теперь вы можете зайти в систему', 'success');
         }
       });
@@ -40,8 +40,8 @@ export class LoginComponent implements OnInit {
 
   }
 
-  private showMessage(text: string, type: string = 'danger')  {
-    this.message = new Message( text, type);
+  private showMessage(text: string, type: string = 'danger') {
+    this.message = new Message(text, type);
     window.setTimeout(() => {
       this.message.text = '';
     }, 5000);
@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     const formData = this.form.value;
     this.userService.getUserByEmail(formData.email)
-      .subscribe( (user: User) => {
+      .subscribe((user: User) => {
         if (user) {
           if (user.password === formData.password) {
             this.message.text = '';
@@ -60,12 +60,11 @@ export class LoginComponent implements OnInit {
           } else {
             this.showMessage('Пароль не верный');
           }
-         } else {
+        } else {
           this.showMessage('Юзер не существует');
         }
-
       });
-
   }
+}
 
 }
