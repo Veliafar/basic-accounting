@@ -4,7 +4,7 @@ import { UserService } from 'src/app/shared/services/user.service';
 import { User } from 'src/app/shared/services/models/user.model';
 import { Message } from 'src/app/shared/services/models/message.model';
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -20,10 +20,19 @@ export class LoginComponent implements OnInit {
   constructor(
     private userService: UserService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
+
+    this.route.queryParams
+      .subscribe((params: Params) => {
+        if (params[`nowCanLogin`])  {
+          this.showMessage('Теперь вы можете зайти в систему', 'success');
+        }
+      });
+
     this.form = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, [Validators.required, Validators.minLength(6)])
