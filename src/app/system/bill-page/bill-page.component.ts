@@ -3,6 +3,8 @@ import { BillService } from '../shared/services/bill.service';
 import { Observable, Subject } from 'rxjs';
 import { Bill } from '../shared/models/bill.model';
 import { takeUntil } from 'rxjs/operators';
+import { CbData } from '../shared/models/cb-data.module';
+import { CbValutes } from '../shared/models/cb-valutes.model';
 
 @Component({
   selector: 'app-bill-page',
@@ -12,9 +14,10 @@ import { takeUntil } from 'rxjs/operators';
 export class BillPageComponent implements OnInit, OnDestroy {
   private ngUnsubscribe: Subject<void> = new Subject<void>();
 
-  currency: any = null;
-  bill: Bill = null;
+  currency: CbValutes[] = new Array<CbValutes>();
+  bill: Bill = new Object as Bill;
   isLoaded = false;
+  currentDate: string;
 
   constructor(
     private billService: BillService
@@ -30,12 +33,25 @@ export class BillPageComponent implements OnInit, OnDestroy {
         takeUntil(this.ngUnsubscribe),
       )
       .subscribe(
-        (data: [Bill, any]) => {
-          this.isLoaded = true;
+        (data: [Bill, CbData]) => {
           this.bill = data[0];
-          this.currency = data[1];
+          this.currency = this.getValutes(data[1]);
+          this.currentDate = data[1].Date;
+          this.isLoaded = true;
         }
       );
+  }
+
+  getValutes(cbData: CbData) {
+    const data: { [name: string]: CbValutes } = cbData.Valute;
+    const valutes: CbValutes[] = new Array<CbValutes>();
+
+    for (const key in data) {
+      if (data.hasOwnProperty(key) && data[key]) {
+        valutes.push(data[key])
+      }
+    }
+    return valutes;
   }
 
   onRefresh() {
@@ -46,8 +62,8 @@ export class BillPageComponent implements OnInit, OnDestroy {
         takeUntil(this.ngUnsubscribe),
       )
       .subscribe((currency: any) => {
-        this.isLoaded = true;
         this.currency = currency;
+        this.isLoaded = true;
       });
   }
 

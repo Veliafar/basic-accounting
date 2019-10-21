@@ -5,6 +5,13 @@
       "email": "denis.seo@nxt.ru",
       "password": "12345678",
       "name": "Администратор"
+    },
+    {
+      "email": "kiselev.js@yandex.ru",
+      "password": "12345678",
+      "name": "Denis",
+      "agree": true,
+      "id": 2
     }
   ],
   "bill": {

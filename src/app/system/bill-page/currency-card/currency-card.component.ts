@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Bill } from '../../shared/models/bill.model';
+import { CbValutes } from '../../shared/models/cb-valutes.model';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-currency-card',
@@ -7,9 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CurrencyCardComponent implements OnInit {
 
+  @Input() currency: CbValutes[] = new Array<CbValutes>();
+  @Input() currentDate: string;
+
+  usd: CbValutes = new Object as CbValutes;
+  eur: CbValutes = new Object as CbValutes;
+  valueInUsd: number;
+  valueInEur: number;
+
+  currencyArr: string[] = ['EUR', 'USD'];
+
+
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() {    
+  }
+
+  getCurrencyFromArr(currencyCode: string): CbValutes {
+    return this.currency.find((el: CbValutes) => {
+      return el.CharCode === currencyCode;
+    })
   }
 
 }

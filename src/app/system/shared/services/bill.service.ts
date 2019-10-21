@@ -17,7 +17,7 @@ export class BillService extends BaseApi {
     }
 
     getCurrency(base: string = 'RUB'): Observable<any> {
-        return this.http.get(`https://data.fixer.io/api/latest?base=${base}`)
+        return this.http.get(`https://www.cbr-xml-daily.ru/daily_json.js`)
             .map( (res) => res);
     }
 }
