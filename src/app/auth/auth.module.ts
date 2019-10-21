@@ -1,4 +1,4 @@
-import { NgModule } from "@angular/core";
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { LoginComponent } from './login/login.component';
@@ -14,10 +14,10 @@ import { SharedModule } from '../shared/shared.module';
         RegistrationComponent,
         AuthComponent
     ],
-    imports: [        
+    imports: [
         CommonModule,
         AuthRoutingModule,
         SharedModule
     ]
 })
-export class AuthModule { }
+export class AuthModule {}

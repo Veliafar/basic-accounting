@@ -48,17 +48,16 @@ export class RegistrationComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.form);
 
-    // this.user = Object.assign({}, this.form.value);
-    // this.userService.createNewUser(this.user)
-    //   .subscribe((newUser: User) => {
-    //     this.router.navigate(['/login'], {
-    //       queryParams: {
-    //         nowCanLogin: true
-    //       }
-    //     });
-    //   });
+    this.user = Object.assign({}, this.form.value);
+    this.userService.createNewUser(this.user)
+      .subscribe((newUser: User) => {
+        this.router.navigate(['/login'], {
+          queryParams: {
+            nowCanLogin: true
+          }
+        });
+      });
   }
 
   forbiddenEmails(control: FormControl): Promise<any> {
