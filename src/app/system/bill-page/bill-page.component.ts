@@ -15,14 +15,16 @@ export class BillPageComponent implements OnInit, OnDestroy {
   private ngUnsubscribe: Subject<void> = new Subject<void>();
 
   currency: CbValutes[] = new Array<CbValutes>();
-  bill: Bill = new Object as Bill;
+  bill: Bill = new Object() as Bill;
   isLoaded = false;
   currentDate: string;
+
+  currencyArr: string[] = ['EUR', 'USD'];
 
   constructor(
     private billService: BillService
   ) { }
-
+ 
   ngOnInit() {
     Observable.combineLatest(
       this.billService.getBill(),
@@ -48,7 +50,7 @@ export class BillPageComponent implements OnInit, OnDestroy {
 
     for (const key in data) {
       if (data.hasOwnProperty(key) && data[key]) {
-        valutes.push(data[key])
+        valutes.push(data[key]);
       }
     }
     return valutes;

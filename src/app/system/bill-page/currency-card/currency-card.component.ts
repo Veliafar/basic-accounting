@@ -12,24 +12,21 @@ export class CurrencyCardComponent implements OnInit {
 
   @Input() currency: CbValutes[] = new Array<CbValutes>();
   @Input() currentDate: string;
+  @Input() currencyArr: string[];
 
-  usd: CbValutes = new Object as CbValutes;
-  eur: CbValutes = new Object as CbValutes;
-  valueInUsd: number;
-  valueInEur: number;
-
-  currencyArr: string[] = ['EUR', 'USD'];
+  usd: CbValutes = new Object() as CbValutes;
+  eur: CbValutes = new Object() as CbValutes;
 
 
   constructor() { }
 
-  ngOnInit() {    
+  ngOnInit() {
   }
 
   getCurrencyFromArr(currencyCode: string): CbValutes {
     return this.currency.find((el: CbValutes) => {
       return el.CharCode === currencyCode;
-    })
+    });
   }
 
 }
