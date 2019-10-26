@@ -36,7 +36,7 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
       .pipe(
         takeUntil(this.ngUnsubscribe)
       )
-      .subscribe( (category: Category) => {
+      .subscribe((category: Category) => {
         form.reset();
         form.form.patchValue(category);
 
