@@ -45,7 +45,7 @@
                     Поле не может быть пустым
                 </span>
             </div>
-            <button type="submit" class="btn btn-primary">Добавить</button>
+            <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Добавить</button>
         </form>
     </div>
 </div>
