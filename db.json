@@ -15,7 +15,7 @@
     }
   ],
   "bill": {
-    "value": 100000,
+    "value": 91800,
     "currency": "RUB"
   },
   "categories": [
@@ -80,6 +80,46 @@
       "date": "10.06.2017 14:01:58",
       "id": 5,
       "description": "Заправка + проход ТО"
+    },
+    {
+      "category": 3,
+      "amount": 1500,
+      "description": "ремонт",
+      "type": "outcome",
+      "date": "10.27.2019 20:46:24",
+      "id": 6
+    },
+    {
+      "category": 2,
+      "amount": 3600,
+      "description": "продукты",
+      "type": "outcome",
+      "date": "10.27.2019 20:49:05",
+      "id": 7
+    },
+    {
+      "category": 3,
+      "amount": 600,
+      "description": "ремонт",
+      "type": "outcome",
+      "date": "10.27.2019 20:49:24",
+      "id": 8
+    },
+    {
+      "category": 3,
+      "amount": 500,
+      "description": "ремонт",
+      "type": "outcome",
+      "date": "10.27.2019 20:49:42",
+      "id": 9
+    },
+    {
+      "category": 3,
+      "amount": 2000,
+      "description": "ремонт",
+      "type": "outcome",
+      "date": "10.27.2019 20:50:51",
+      "id": 10
     }
   ]
 }

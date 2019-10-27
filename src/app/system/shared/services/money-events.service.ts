@@ -16,6 +16,10 @@ export class MoneyEventsService extends BaseApi{
         return this.post(`events`, event);
     }
 
+    getEvents(): Observable<MoneyOperationEvent[]> {
+        return this.get(`events`);
+    }
+
 
     manageDateToDBFormat() {
         const dt = new Date();
