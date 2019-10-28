@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-history-chart',
   templateUrl: './history-chart.component.html',
   styleUrls: ['./history-chart.component.less']
 })
-export class HistoryChartComponent implements OnInit {
+export class HistoryChartComponent {
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+  @Input() data;
 
 }
