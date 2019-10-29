@@ -1,4 +1,5 @@
 import { MoneyOperationType } from './enums/money-operation-type.enum';
+import { SpawnSyncOptionsWithStringEncoding } from 'child_process';
 
 
 export class MoneyOperationEvent {
@@ -8,5 +9,6 @@ export class MoneyOperationEvent {
     category: number;
     date: string;
     description: string;
+    catName: string;
 }
 

@@ -36,28 +36,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>44 444</td>
-                            <td>12.12.2017</td>
-                            <td>Товары</td>
+                        <tr *ngFor=" let moneyEvent of moneyEvents; let idx = index">
+                            <th scope="row">{{ idx + 1}}</th>
+                            <td>{{  moneyEvent.amount | number:'1.2' }}</td>
+                            <td>{{  moneyEvent.date | date:'dd.MM.yyyy'  }}</td>
+                            <td>{{  moneyEvent.catName }}</td>
                             <td>
-                                <span class="label label-danger">Расход</span>
+                                <span [ngClass]="getEventClass(moneyEvent)">
+                                    <span *ngIf="moneyEvent.type === _enums.MoneyOperationType.income">Расход</span>
+                                    <span *ngIf="moneyEvent.type === _enums.MoneyOperationType.outcome">Доход</span>
+                                </span>
+
                             </td>
                             <td class="text-lg-center">
-                                <a href="#" class="btn btn-primary-outline">Открыть</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>33 333</td>
-                            <td>12.12.2017</td>
-                            <td>Отдых</td>
-                            <td>
-                                <span class="label label-success">Доход</span>
-                            </td>
-                            <td class="text-lg-center">
-                                <a href="#" class="btn btn-primary-outline">Открыть</a>
+                                <a [routerLink]="['/system/history', moneyEvent.id]" class="btn btn-primary-outline">Открыть</a>
                             </td>
                         </tr>
                     </tbody>
