@@ -14,6 +14,10 @@ export class HistoryEventsComponent implements OnInit {
     MoneyOperationType
   }
 
+  searchValue: string = '';
+  searchPlaceholder: string = 'Сумма';
+  searchType: string = 'amount'
+
   @Input() moneyEvents: MoneyOperationEvent[] = [];
   @Input() categories: Category[] = [];
 
@@ -32,6 +36,17 @@ export class HistoryEventsComponent implements OnInit {
       'label-danger': event.type === MoneyOperationType.outcome,
       'label-success': event.type === MoneyOperationType.income
     }
+  }
+
+  changeSearchType(searchType: string) {
+    const namesMap = {
+      amount: 'Сумма',
+      date: 'Дата',
+      category: 'Категория',
+      type: 'Тип'
+    }
+    this.searchPlaceholder = namesMap[searchType]
+    this.searchType = searchType;
   }
 
 }
