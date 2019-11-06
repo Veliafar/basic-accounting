@@ -20,6 +20,10 @@ export class MoneyEventsService extends BaseApi{
         return this.get(`events`);
     }
 
+    getEventById(id: string): Observable<MoneyOperationEvent> {
+        return this.get(`events/${id}`);
+    }
+
 
     manageDateToDBFormat() {
         const dt = new Date();
