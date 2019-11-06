@@ -23,6 +23,8 @@ export class HistoryPageComponent implements OnInit, OnDestroy {
 
   chartData = [];
 
+  isFilterVisible: boolean = false;
+
   constructor(
     private categoriesService: CategoriesService,
     private moneyEventsService: MoneyEventsService
@@ -59,6 +61,22 @@ export class HistoryPageComponent implements OnInit, OnDestroy {
         }, 0 )
       });
     })
+  }
+
+  private toggleFilterVisibility(direction: boolean) {
+    this.isFilterVisible = direction;
+  }
+
+  openFilter() {
+    this.toggleFilterVisibility(true);
+  }
+
+  onFilterApply() {
+
+  }
+
+  onFilterCancel() {
+    this.toggleFilterVisibility(false);
   }
 
   ngOnDestroy() {
