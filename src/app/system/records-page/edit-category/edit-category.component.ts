@@ -31,8 +31,7 @@ export class EditCategoryComponent implements OnInit, OnDestroy {
   }
 
   
-  onCategoryChange() {
-    console.log(this.currentCategoryId);
+  onCategoryChange() {    
     this.currentCategory = this.categories
       .find( category => category.id === +this.currentCategoryId)
     
