@@ -15,7 +15,7 @@
     }
   ],
   "bill": {
-    "value": 91800,
+    "value": 89267,
     "currency": "RUB"
   },
   "categories": [
@@ -120,6 +120,38 @@
       "type": "outcome",
       "date": "10.27.2019 20:50:51",
       "id": 10
+    },
+    {
+      "category": 2,
+      "amount": 1200,
+      "description": "testfilter",
+      "type": "outcome",
+      "date": "11.07.2019 18:55:38",
+      "id": 11
+    },
+    {
+      "category": 1,
+      "amount": 0,
+      "description": "",
+      "type": "outcome",
+      "date": "11.07.2019 18:56:31",
+      "id": 12
+    },
+    {
+      "category": 1,
+      "amount": 1111,
+      "description": "ремонт",
+      "type": "outcome",
+      "date": "11.07.2019 18:56:38",
+      "id": 13
+    },
+    {
+      "category": 2,
+      "amount": 222,
+      "description": "asd",
+      "type": "outcome",
+      "date": "11.07.2019 18:59:11",
+      "id": 14
     }
   ]
 }

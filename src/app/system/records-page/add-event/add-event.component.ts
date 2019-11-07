@@ -58,6 +58,9 @@ export class AddEventComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(form: NgForm) {
+
+    console.log(form);
+    
     this.moneyOperationEvent =
       Object.assign({}, form.value);
 

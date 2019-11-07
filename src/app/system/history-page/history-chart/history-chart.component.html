@@ -1,7 +1,19 @@
 <div class="row">
     <div class="col-xs-12 ngx-charts-pie-chart__center-doughnut">
-        <ngx-charts-pie-chart [view]="[545, 355]" [explodeSlices]="false" [results]="data" [labels]="true"
-            [doughnut]="true">
-        </ngx-charts-pie-chart>
+        <div class="text-center" *ngIf="dataIncome && dataIncome.length">
+            <label for="" >Доход</label>
+            <ngx-charts-pie-chart [view]="[545, 355]" [explodeSlices]="false"
+                [results]="dataIncome" [labels]="true"
+                [doughnut]="true">
+            </ngx-charts-pie-chart>
+        </div>
+
+        <div class="text-center" *ngIf="data && data.length">
+            <label for="">Расход</label>
+            <ngx-charts-pie-chart [view]="[545, 355]" [explodeSlices]="false"
+                [results]="data" [labels]="true"
+                [doughnut]="true">
+            </ngx-charts-pie-chart>
+        </div>
     </div>
 </div>

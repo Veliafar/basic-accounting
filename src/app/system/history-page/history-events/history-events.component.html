@@ -42,8 +42,8 @@
                             <td>{{  moneyEvent.catName }}</td>
                             <td>
                                 <span [ngClass]="getEventClass(moneyEvent)">
-                                    <span *ngIf="moneyEvent.type === _enums.MoneyOperationType.income">Расход</span>
-                                    <span *ngIf="moneyEvent.type === _enums.MoneyOperationType.outcome">Доход</span>
+                                    <span *ngIf="moneyEvent.type === _enums.MoneyOperationType.income">Доход</span>
+                                    <span *ngIf="moneyEvent.type === _enums.MoneyOperationType.outcome">Расход</span>
                                 </span>
 
                             </td>

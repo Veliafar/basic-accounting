@@ -1,12 +1,15 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { CategoriesService } from '../shared/services/categories.service';
-import { MoneyEventsService } from '../shared/services/money-events.service';
+
 import { Observable, Subject } from 'rxjs';
-import { Category } from '../shared/models/category.model';
-import { MoneyOperationEvent } from '../shared/models/money-operation-event.model';
 import { takeUntil } from 'rxjs/operators';
 
+import { CategoriesService } from '../shared/services/categories.service';
+import { MoneyEventsService } from '../shared/services/money-events.service';
+import { Category } from '../shared/models/category.model';
+import { MoneyOperationEvent } from '../shared/models/money-operation-event.model';
 import { MoneyOperationType } from './../shared/models/enums/money-operation-type.enum';
+
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-history-page',
@@ -21,7 +24,10 @@ export class HistoryPageComponent implements OnInit, OnDestroy {
   categories: Category[] = [];
   moneyEvents: MoneyOperationEvent[] = [];
 
+  filteredEvents: MoneyOperationEvent[] = [];
+
   chartData = [];
+  chartDataIncome = [];
 
   isFilterVisible: boolean = false;
 
@@ -35,30 +41,45 @@ export class HistoryPageComponent implements OnInit, OnDestroy {
       [this.categoriesService.getCategories(),
       this.moneyEventsService.getEvents()]
     )
-    .pipe(
-      takeUntil(this.ngUnsubscribe)
-    )
-    .subscribe((data: [Category[], MoneyOperationEvent[]]) => {
-      this.categories = data[0];
-      this.moneyEvents = data[1];
+      .pipe(
+        takeUntil(this.ngUnsubscribe)
+      )
+      .subscribe((data: [Category[], MoneyOperationEvent[]]) => {
+        this.categories = data[0];
+        this.moneyEvents = data[1];
 
-      this.calculateChartData();
 
-      this.isLoaded = true;
-    })
+        this.setOriginalEvents();
+        this.calculateChartData();
+
+        this.isLoaded = true;
+      })
+  }
+
+  private setOriginalEvents() {
+    this.filteredEvents = this.moneyEvents.slice();
   }
 
   calculateChartData(): void {
     this.chartData = [];
+    this.chartDataIncome = [];
 
-    this.categories.forEach( (category: Category) => {
-      const categoryEvent = this.moneyEvents.filter( (moneyEvent: MoneyOperationEvent) => moneyEvent.category === category.id && moneyEvent.type === MoneyOperationType.outcome);
+    this.categories.forEach((category: Category) => {
+      const categoryEvent = this.filteredEvents.filter((moneyEvent: MoneyOperationEvent) => moneyEvent.category === category.id && moneyEvent.type === MoneyOperationType.outcome);
+      const categoryEventIncome = this.filteredEvents.filter((moneyEvent: MoneyOperationEvent) => moneyEvent.category === category.id && moneyEvent.type === MoneyOperationType.income);
 
       this.chartData.push({
         name: category.name,
-        value: categoryEvent.reduce( (total, el) => {
+        value: categoryEvent.reduce((total, el) => {
           return total += el.amount;
-        }, 0 )
+        }, 0)
+      });
+
+      this.chartDataIncome.push({
+        name: category.name,
+        value: categoryEventIncome.reduce((total, el) => {
+          return total += el.amount;
+        }, 0)
       });
     })
   }
@@ -72,13 +93,30 @@ export class HistoryPageComponent implements OnInit, OnDestroy {
   }
 
   onFilterApply(filterData) {
+    this.toggleFilterVisibility(false);
+    this.setOriginalEvents();
 
-    console.log(filterData);
-    
+    const startPeriod = moment().startOf(filterData.period).startOf('d');
+    const endPeriod = moment().endOf(filterData.period).endOf('d');
+
+    this.filteredEvents = this.filteredEvents
+      .filter((event: MoneyOperationEvent) => {
+        return filterData.types.indexOf(event.type) !== -1;
+      })
+      .filter((event: MoneyOperationEvent) => {
+        return filterData.categories.indexOf(event.category.toString()) !== -1;
+      })
+      .filter((event: MoneyOperationEvent) => {
+        const momentDate = moment(new Date(event.date).toISOString());
+        return momentDate.isBetween(startPeriod, endPeriod);
+      })
+    this.calculateChartData();
   }
 
   onFilterCancel() {
     this.toggleFilterVisibility(false);
+    this.setOriginalEvents();
+    this.calculateChartData();
   }
 
   ngOnDestroy() {
