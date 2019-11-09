@@ -6,6 +6,7 @@ import { Message } from 'src/app/shared/services/models/message.model';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { fadeStateTrigger } from 'src/app/shared/components/animations/fade.animation';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',
@@ -23,8 +24,23 @@ export class LoginComponent implements OnInit {
     private userService: UserService,
     private authService: AuthService,
     private router: Router,
-    private route: ActivatedRoute
-  ) { }
+    private route: ActivatedRoute,
+    private title: Title,
+    private meta: Meta
+  ) { 
+    title.setTitle('Вход в домашнюю бухгалтерию');
+    meta.addTags([
+      {
+        name: 'keywords',
+        content: 'логин, бухгалтерия'
+      },
+      {
+        name: 'description',
+        content: 'Страница для входа в систему бухгалтерии'
+      },
+    ])
+
+  }
 
   ngOnInit() {
 
