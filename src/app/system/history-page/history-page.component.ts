@@ -68,20 +68,18 @@ export class HistoryPageComponent implements OnInit, OnDestroy {
       const categoryEvent = this.filteredEvents.filter((moneyEvent: MoneyOperationEvent) => moneyEvent.category === category.id && moneyEvent.type === MoneyOperationType.outcome);
       const categoryEventIncome = this.filteredEvents.filter((moneyEvent: MoneyOperationEvent) => moneyEvent.category === category.id && moneyEvent.type === MoneyOperationType.income);
 
-      this.chartData.push({
-        name: category.name,
-        value: categoryEvent.reduce((total, el) => {
-          return total += el.amount;
-        }, 0)
-      });
-
-      this.chartDataIncome.push({
-        name: category.name,
-        value: categoryEventIncome.reduce((total, el) => {
-          return total += el.amount;
-        }, 0)
-      });
+      this.pushChartData(this.chartData, category, categoryEvent);
+      this.pushChartData(this.chartDataIncome, category, categoryEventIncome);
     })
+  }
+
+  private pushChartData(arr, category, categoryEventIncome) {
+    arr.push({
+      name: category.name,
+      value: categoryEventIncome.reduce((total, el) => {
+        return total += el.amount;
+      }, 0)
+    });
   }
 
   private toggleFilterVisibility(direction: boolean) {
@@ -104,7 +102,7 @@ export class HistoryPageComponent implements OnInit, OnDestroy {
         return filterData.types.indexOf(event.type) !== -1;
       })
       .filter((event: MoneyOperationEvent) => {
-        return filterData.categories.indexOf(event.category.toString()) !== -1;
+        return filterData.categories.indexOf(event.category.toString()) !== -1;        
       })
       .filter((event: MoneyOperationEvent) => {
         const momentDate = moment(new Date(event.date).toISOString());

@@ -1,5 +1,5 @@
 <div class="text-center" *ngIf="!isLoaded">
-    Loading ...
+    <app-loader></app-loader>
 </div>
 
 
@@ -14,16 +14,22 @@
     <section class="section">
         <div class="row">
             <div class="col-xs-6 col-xs-offset-3">
-                <div class="card" [ngClass]="{'card-success': event.type === _enums.MoneyOperationType.income,
-                'card-danger': event.type === _enums.MoneyOperationType.outcome }">
+                <div class="card" [ngClass]="{'card-success': event.type ===
+                    _enums.MoneyOperationType.income,
+                    'card-danger': event.type ===
+                    _enums.MoneyOperationType.outcome }">
                     <div class="card-header">
                         <div class="header-block">
-                            <p class="title">Доход</p>
+                            <p *ngIf="event.type ===
+                                _enums.MoneyOperationType.income" class="title">Доход</p>
+                            <p *ngIf="event.type ===
+                                _enums.MoneyOperationType.outcome" class="title">Расход</p>
                         </div>
                     </div>
                     <div class="card-block">
                         <ul>
-                            <li>Сумма: <strong>{{ event.amount | number:'1.2' }} P</strong></li>
+                            <li>Сумма: <strong>{{ event.amount | number:'1.2' }}
+                                    P</strong></li>
                             <li>Категория: <strong>{{ category.name }}</strong></li>
                             <li>Комментарий: <strong>{{ event.description }}</strong></li>
                         </ul>

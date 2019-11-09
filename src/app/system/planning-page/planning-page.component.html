@@ -4,7 +4,7 @@
     </h3>
 </div>
 <section class="section" *ngIf="!isLoaded">
-    Loading ...
+    <app-loader></app-loader>
 </section>
 <section class="section" *ngIf="isLoaded">
     <div class="row">
@@ -15,27 +15,39 @@
                         <h3 class="title">Расходы</h3>
                     </div>
                     <h5 class="planning-expenses pull-right">
-                        Общий остаток: <span class="text-success">{{ bill.value | number:'1.2'}} Р</span>
+                        Общий остаток: <span class="text-success">{{ bill.value
+                            | number:'1.2'}} Р</span>
                     </h5>
                 </div>
                 <div class="card-block">
                     <div class="row" *ngFor="let oneCategory of categoryArray">
                         <div class="col-xs-6">
                             <div class="n-progress">
-                                <div class="progress-bar {{getCategoryColorClass(oneCategory)}}" [ngStyle]="{width: getCategoryPercent(oneCategory)}">
-                                    <span>{{ oneCategory.name }}</span> 
+                                <div class="progress-bar
+                                    {{getCategoryColorClass(oneCategory)}}"
+                                    [ngStyle]="{width:
+                                    getCategoryPercent(oneCategory)}">
+                                    <span>{{ oneCategory.name }}</span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xs-6">
                             <p>
-                                <span class="text-{{getCategoryColorClass(oneCategory)}}">{{ getCategorySpent(oneCategory) | number:'1.2' }}</span>
+                                <span
+                                    class="text-{{getCategoryColorClass(oneCategory)}}">{{
+                                    getCategorySpent(oneCategory) | number:'1.2'
+                                    }}</span>
                                 из
-                                <span class="text-primary">{{ oneCategory.capacity | number:'1.2' }}</span>
+                                <span class="text-primary">{{
+                                    oneCategory.capacity | number:'1.2' }}</span>
                                 |
-                                осталось <span class="text-{{getCategoryColorClass(oneCategory)}}">{{ oneCategory.capacity - getCategorySpent(oneCategory) | number:'1.2' }}</span> (руб.)
+                                осталось <span
+                                    class="text-{{getCategoryColorClass(oneCategory)}}">{{
+                                    oneCategory.capacity -
+                                    getCategorySpent(oneCategory) | number:'1.2'
+                                    }}</span> (руб.)
                             </p>
-                            
+
                         </div>
                     </div>
                 </div>
