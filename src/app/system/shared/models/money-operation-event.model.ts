@@ -10,5 +10,6 @@ export class MoneyOperationEvent {
     date: string;
     description: string;
     catName: string;
+    deleted: boolean;
 }
 

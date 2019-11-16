@@ -14,12 +14,11 @@
 <div *ngIf="isLoaded">
     <app-history-chart [data]="chartData" [dataIncome]="chartDataIncome"></app-history-chart>
     <app-history-events [categories]="categories"
-        [moneyEvents]="filteredEvents"></app-history-events>
+        [moneyEvents]="filteredEvents" (eventDelete)="eventDelete($event)"></app-history-events>
 
     <div *ngIf="isFilterVisible">
         <app-history-filter [categories]="categories"
             (onFilterApply)="onFilterApply($event)"
             (onFilterCancel)="onFilterCancel()"></app-history-filter>
     </div>
-
 </div>

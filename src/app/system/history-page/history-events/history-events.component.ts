@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MoneyOperationEvent } from '../../shared/models/money-operation-event.model';
 import { MoneyOperationType } from './../../shared/models/enums/money-operation-type.enum';
 import { Category } from '../../shared/models/category.model';
@@ -20,13 +20,16 @@ export class HistoryEventsComponent implements OnInit {
 
   @Input() moneyEvents: MoneyOperationEvent[] = [];
   @Input() categories: Category[] = [];
+  @Output() eventDelete = new EventEmitter<number>();
 
   constructor() { }
 
   ngOnInit() {
 
-    this.moneyEvents.forEach( (event: MoneyOperationEvent) => {
-      event.catName = this.categories.find( (cat: Category) => cat.id === event.category ).name;
+    this.moneyEvents.forEach((event: MoneyOperationEvent) => {
+
+      event.catName = this.categories.find((cat: Category) => cat.id === event.category).name;
+
     })
   }
 
@@ -47,6 +50,10 @@ export class HistoryEventsComponent implements OnInit {
     }
     this.searchPlaceholder = namesMap[searchType]
     this.searchType = searchType;
+  }
+
+  remove(moneyEventId) {
+    this.eventDelete.emit(moneyEventId);
   }
 
 }

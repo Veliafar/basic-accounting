@@ -117,6 +117,11 @@ export class HistoryPageComponent implements OnInit, OnDestroy {
     this.calculateChartData();
   }
 
+  eventDelete(event) {
+    console.log(event);
+    
+  }
+
   ngOnDestroy() {
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
