@@ -16,6 +16,7 @@ export class CurrencyCardComponent implements OnInit {
 
   usd: CbValutes = new Object() as CbValutes;
   eur: CbValutes = new Object() as CbValutes;
+  gbp: CbValutes = new Object() as CbValutes;
 
 
   constructor() { }

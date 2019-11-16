@@ -19,7 +19,7 @@ export class BillPageComponent implements OnInit, OnDestroy {
   isLoaded = false;
   currentDate: string;
 
-  currencyArr: string[] = ['EUR', 'USD'];
+  currencyArr: string[] = ['EUR', 'USD', 'GBP'];
 
   constructor(
     private billService: BillService

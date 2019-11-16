@@ -18,6 +18,7 @@ export class BillCardComponent implements OnInit {
 
   valueInUsd: number;
   valueInEur: number;
+  valueInGbp: number;
 
   constructor() {}
 
@@ -33,6 +34,9 @@ export class BillCardComponent implements OnInit {
       }
       if (element.CharCode === 'USD') {
         this.valueInUsd = this.bill.value / element.Value;
+      }
+      if (element.CharCode === 'GBP') {
+        this.valueInGbp = this.bill.value / element.Value;
       }
     });
   }

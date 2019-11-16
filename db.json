@@ -15,143 +15,81 @@
     }
   ],
   "bill": {
-    "value": 89267,
+    "value": 122200,
     "currency": "RUB"
   },
   "categories": [
     {
-      "name": "Дом",
-      "capacity": 15000,
+      "name": "Еда",
+      "capacity": 25000,
       "id": 1
     },
     {
-      "name": "Еда",
-      "capacity": 10000,
+      "name": "Досуг",
+      "capacity": 30000,
       "id": 2
     },
     {
-      "id": 3,
-      "name": "Машина",
-      "capacity": 7000
+      "name": "Подарки",
+      "capacity": 30000,
+      "id": 3
     },
     {
-      "name": "Start",
-      "capacity": 12,
+      "name": "Транспорт",
+      "capacity": 20000,
       "id": 4
+    },
+    {
+      "name": "Рестораны",
+      "capacity": 35000,
+      "id": 5
+    },
+    {
+      "name": "Бытовая химия, косметика",
+      "capacity": 10000,
+      "id": 6
     }
   ],
   "events": [
     {
-      "id": 1,
-      "type": "income",
-      "amount": 1250,
-      "category": 2,
-      "date": "12.06.2017 19:49:02",
-      "description": "Подарили еду в гостях"
+      "category": 4,
+      "amount": 5500,
+      "description": "поездка из аэропорта",
+      "type": "outcome",
+      "date": "11.16.2019 14:43:04",
+      "id": 1
     },
     {
-      "id": 2,
+      "category": 1,
+      "amount": 6000,
+      "description": "Алкоголь дьюти фри",
       "type": "outcome",
+      "date": "11.16.2019 14:43:59",
+      "id": 2
+    },
+    {
+      "category": 1,
+      "amount": 3000,
+      "description": "Еда в бургерной, когда летели в Лондон",
+      "type": "outcome",
+      "date": "11.16.2019 14:45:31",
+      "id": 4
+    },
+    {
+      "category": 1,
       "amount": 1300,
-      "category": 1,
-      "date": "12.06.2017 19:49:02",
-      "description": "Купил посудомоечную машину"
-    },
-    {
-      "type": "income",
-      "amount": 1480,
-      "category": 2,
-      "date": "12.06.2017 19:49:02",
-      "id": 3,
-      "description": "Поход в окей с баллами. Бесплатная еда"
-    },
-    {
+      "description": "Еда, супермаркет, 1 вечер",
       "type": "outcome",
-      "amount": 2470,
-      "category": 2,
-      "date": "12.06.2017 19:49:02",
-      "id": 4,
-      "description": "Закупка на неделю"
+      "date": "11.16.2019 14:57:47",
+      "id": 5
     },
     {
+      "category": 6,
+      "amount": 6000,
+      "description": "духи олеся",
       "type": "outcome",
-      "amount": 4000,
-      "category": 3,
-      "date": "10.06.2017 14:01:58",
-      "id": 5,
-      "description": "Заправка + проход ТО"
-    },
-    {
-      "category": 3,
-      "amount": 1500,
-      "description": "ремонт",
-      "type": "outcome",
-      "date": "10.27.2019 20:46:24",
+      "date": "11.16.2019 15:06:13",
       "id": 6
-    },
-    {
-      "category": 2,
-      "amount": 3600,
-      "description": "продукты",
-      "type": "outcome",
-      "date": "10.27.2019 20:49:05",
-      "id": 7
-    },
-    {
-      "category": 3,
-      "amount": 600,
-      "description": "ремонт",
-      "type": "outcome",
-      "date": "10.27.2019 20:49:24",
-      "id": 8
-    },
-    {
-      "category": 3,
-      "amount": 500,
-      "description": "ремонт",
-      "type": "outcome",
-      "date": "10.27.2019 20:49:42",
-      "id": 9
-    },
-    {
-      "category": 3,
-      "amount": 2000,
-      "description": "ремонт",
-      "type": "outcome",
-      "date": "10.27.2019 20:50:51",
-      "id": 10
-    },
-    {
-      "category": 2,
-      "amount": 1200,
-      "description": "testfilter",
-      "type": "outcome",
-      "date": "11.07.2019 18:55:38",
-      "id": 11
-    },
-    {
-      "category": 1,
-      "amount": 0,
-      "description": "",
-      "type": "outcome",
-      "date": "11.07.2019 18:56:31",
-      "id": 12
-    },
-    {
-      "category": 1,
-      "amount": 1111,
-      "description": "ремонт",
-      "type": "outcome",
-      "date": "11.07.2019 18:56:38",
-      "id": 13
-    },
-    {
-      "category": 2,
-      "amount": 222,
-      "description": "asd",
-      "type": "outcome",
-      "date": "11.07.2019 18:59:11",
-      "id": 14
     }
   ]
 }
