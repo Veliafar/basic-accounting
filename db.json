@@ -52,14 +52,6 @@
   ],
   "events": [
     {
-      "category": 4,
-      "amount": 5500,
-      "description": "поездка из аэропорта",
-      "type": "outcome",
-      "date": "11.16.2019 14:43:04",
-      "id": 1
-    },
-    {
       "category": 1,
       "amount": 6000,
       "description": "Алкоголь дьюти фри",
@@ -82,14 +74,6 @@
       "type": "outcome",
       "date": "11.16.2019 14:57:47",
       "id": 5
-    },
-    {
-      "category": 6,
-      "amount": 6000,
-      "description": "духи олеся",
-      "type": "outcome",
-      "date": "11.16.2019 15:06:13",
-      "id": 6
     }
   ],
   "deletedEvents": [
@@ -100,6 +84,24 @@
       "type": "outcome",
       "date": "11.16.2019 14:43:24",
       "id": 7
+    },
+    {
+      "category": 4,
+      "amount": 5500,
+      "description": "поездка из аэропорта",
+      "type": "outcome",
+      "date": "11.16.2019 14:43:04",
+      "id": 1,
+      "catName": "Транспорт"
+    },
+    {
+      "category": 6,
+      "amount": 6000,
+      "description": "духи олеся",
+      "type": "outcome",
+      "date": "11.16.2019 15:06:13",
+      "id": 6,
+      "catName": "Бытовая химия, косметика"
     }
   ]
 }

@@ -61,7 +61,80 @@
                                     moneyEvent.id]" class="btn
                                     btn-primary-outline m-r14">Открыть</a>
                                 <button class="btn btn-primary-outline"
-                                    (click)="remove(moneyEvent.id)">Удалить</button>
+                                    (click)="remove(moneyEvent)">Удалить</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header bordered">
+                <div class="header-block">
+                    <h3 class="title">Список удаленных событий</h3>
+                </div>
+                <div class="form-inline pull-right m-r-2">
+                    <div class="form-group">
+                        <input type="text" [(ngModel)]="searchValue"
+                            class="form-control" placeholder="{{
+                            searchPlaceholder }}">
+                    </div>
+                    <div class="btn-group" appDropdown>
+                        <button type="button" class="btn btn-secondary
+                            dropdown-toggle">
+                            Параметр
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item"
+                                (click)="changeSearchType('amount')">Сумма</a>
+                            <a class="dropdown-item"
+                                (click)="changeSearchType('date')">Дата</a>
+                            <a class="dropdown-item"
+                                (click)="changeSearchType('category')">Категория</a>
+                            <a class="dropdown-item"
+                                (click)="changeSearchType('type')">Тип</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-block">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Сумма</th>
+                            <th>Дата</th>
+                            <th>Категория</th>
+                            <th>Тип</th>
+                            <th class="text-lg-center">Действие</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let moneyEvent of removedEvents; let idx= index">
+                            <th scope="row">{{ idx + 1}}</th>
+                            <td>{{ moneyEvent.amount | number:'1.2' }}</td>
+                            <td>{{ moneyEvent.date | date:'dd.MM.yyyy' }}</td>
+                            <td>{{ moneyEvent.catName }}</td>
+                            <td>
+                                <span [ngClass]="getEventClass(moneyEvent)">
+                                    <span *ngIf="moneyEvent.type ===
+                                        _enums.MoneyOperationType.income">Доход</span>
+                                    <span *ngIf="moneyEvent.type ===
+                                        _enums.MoneyOperationType.outcome">Расход</span>
+                                </span>
+                            </td>
+                            <td class="text-lg-center">
+                                <a [routerLink]="['/system/history',
+                                    moneyEvent.id]" class="btn
+                                    btn-primary-outline m-r14">Открыть</a>
+                                <button class="btn btn-primary-outline"
+                                    (click)="remove(moneyEvent)">Вернуть</button>
                             </td>
                         </tr>
                     </tbody>

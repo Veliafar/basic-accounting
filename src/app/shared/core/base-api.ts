@@ -16,6 +16,11 @@ export class BaseApi {
             .map( (res: Response) => res);
     }
 
+    delete(url: string): Observable<any> {
+        return this.http.delete(this.getUrl(url))
+            .map( (res: Response) => res);
+    }
+
     post(url: string, data: any = {}): Observable<any> {
         return this.http.post(this.getUrl(url), data)
             .map( (res: Response) => res);

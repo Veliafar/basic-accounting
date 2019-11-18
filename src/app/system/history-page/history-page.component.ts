@@ -23,7 +23,9 @@ export class HistoryPageComponent implements OnInit, OnDestroy {
 
   categories: Category[] = [];
   moneyEvents: MoneyOperationEvent[] = [];
+  removedEvents: MoneyOperationEvent[] = [];
 
+  filteredRemovedEvents: MoneyOperationEvent[] = [];
   filteredEvents: MoneyOperationEvent[] = [];
 
   chartData = [];
@@ -37,27 +39,36 @@ export class HistoryPageComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    this.getData();
+  }
+
+  getData() {
     Observable.combineLatest(
       [this.categoriesService.getCategories(),
-      this.moneyEventsService.getEvents()]
+      this.moneyEventsService.getEvents(),
+      this.moneyEventsService.getRemovedEvents()]
     )
       .pipe(
         takeUntil(this.ngUnsubscribe)
       )
-      .subscribe((data: [Category[], MoneyOperationEvent[]]) => {
-        this.categories = data[0];
-        this.moneyEvents = data[1];
+      .subscribe(
+        (data: [Category[], MoneyOperationEvent[], MoneyOperationEvent[]]
+        ) => {
+          this.categories = data[0];
+          this.moneyEvents = data[1];
+          this.removedEvents = data[2];
 
 
-        this.setOriginalEvents();
-        this.calculateChartData();
+          this.setOriginalEvents();
+          this.calculateChartData();
 
-        this.isLoaded = true;
-      })
+          this.isLoaded = true;
+        })
   }
 
   private setOriginalEvents() {
     this.filteredEvents = this.moneyEvents.slice();
+    this.filteredRemovedEvents = this.removedEvents.slice();
   }
 
   calculateChartData(): void {
@@ -67,6 +78,14 @@ export class HistoryPageComponent implements OnInit, OnDestroy {
     this.categories.forEach((category: Category) => {
       const categoryEvent = this.filteredEvents.filter((moneyEvent: MoneyOperationEvent) => moneyEvent.category === category.id && moneyEvent.type === MoneyOperationType.outcome);
       const categoryEventIncome = this.filteredEvents.filter((moneyEvent: MoneyOperationEvent) => moneyEvent.category === category.id && moneyEvent.type === MoneyOperationType.income);
+
+      this.pushChartData(this.chartData, category, categoryEvent);
+      this.pushChartData(this.chartDataIncome, category, categoryEventIncome);
+    })
+
+    this.categories.forEach((category: Category) => {
+      const categoryEvent = this.filteredRemovedEvents.filter((moneyEvent: MoneyOperationEvent) => moneyEvent.category === category.id && moneyEvent.type === MoneyOperationType.outcome);
+      const categoryEventIncome = this.filteredRemovedEvents.filter((moneyEvent: MoneyOperationEvent) => moneyEvent.category === category.id && moneyEvent.type === MoneyOperationType.income);
 
       this.pushChartData(this.chartData, category, categoryEvent);
       this.pushChartData(this.chartDataIncome, category, categoryEventIncome);
@@ -102,7 +121,7 @@ export class HistoryPageComponent implements OnInit, OnDestroy {
         return filterData.types.indexOf(event.type) !== -1;
       })
       .filter((event: MoneyOperationEvent) => {
-        return filterData.categories.indexOf(event.category.toString()) !== -1;        
+        return filterData.categories.indexOf(event.category.toString()) !== -1;
       })
       .filter((event: MoneyOperationEvent) => {
         const momentDate = moment(new Date(event.date).toISOString());
@@ -117,9 +136,28 @@ export class HistoryPageComponent implements OnInit, OnDestroy {
     this.calculateChartData();
   }
 
-  eventDelete(event) {
-    console.log(event);
-    
+  eventDelete(event: MoneyOperationEvent) {
+
+    this.moneyEventsService.addRemovedEvent(event)
+      .subscribe((res) => {
+        this.moneyEventsService.deleteEventById(event.id.toString())
+          .subscribe(res => {
+            this.getData();
+          })
+      })
+
+  }
+
+  eventReturn(event: MoneyOperationEvent) {
+
+    this.moneyEventsService.addEvent(event)
+      .subscribe((res) => {
+        // this.moneyEventsService.deleteRemovedEventById(event.id.toString())
+        //   .subscribe(res => {
+        //     this.getData();
+        //   })
+      })
+
   }
 
   ngOnDestroy() {

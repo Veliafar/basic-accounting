@@ -19,8 +19,10 @@ export class HistoryEventsComponent implements OnInit {
   searchType: string = 'amount'
 
   @Input() moneyEvents: MoneyOperationEvent[] = [];
+  @Input() removedEvents: MoneyOperationEvent[] = [];
   @Input() categories: Category[] = [];
-  @Output() eventDelete = new EventEmitter<number>();
+  @Output() eventDelete = new EventEmitter<MoneyOperationEvent>();
+  @Output() eventReturn = new EventEmitter<MoneyOperationEvent>();
 
   constructor() { }
 
@@ -52,8 +54,12 @@ export class HistoryEventsComponent implements OnInit {
     this.searchType = searchType;
   }
 
-  remove(moneyEventId) {
-    this.eventDelete.emit(moneyEventId);
+  remove(moneyEvent) {
+    this.eventDelete.emit(moneyEvent);
+  }
+
+  return(moneyEvent) {
+    this.eventReturn.emit(moneyEvent);
   }
 
 }
